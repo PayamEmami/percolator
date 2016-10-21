@@ -77,7 +77,7 @@ std::string FragSpectrumScanDatabase::decoratePeptide(const ::percolatorInNs::pe
   mods.sort(greater<std::pair<int,std::string> >());
   std::list<std::pair<int,std::string> >::const_iterator it;
   for(it=mods.begin();it!=mods.end();++it) {
-    peptideSeq.insert(it->first,it->second);
+    (it->first <= peptideSeq.length()) ? peptideSeq.insert(it->first,it->second) : peptideSeq.insert(peptideSeq.length(),it->second);
   }
   return peptideSeq;
 }
